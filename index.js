@@ -83,11 +83,6 @@ client.on("messageDelete", async (message) => {
 
 })
 
-client.on("typingStart",async(c) =>{
-  c.channel.send({
-    content:"don't type anything, send an file!"
-  })
-})
 //
 client.on("rateLimit",async (cool) =>{
    cool.channel.send({
