@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "cucumber": "^6.0.7",
+    "discord": "^0.8.2",
+    "discord.js": "^13.6.0",
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.7",
+    "path": "^0.12.7"
+  }
+}
