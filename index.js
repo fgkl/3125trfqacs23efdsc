@@ -80,4 +80,32 @@ client.on('messageCreate', async (message) => {
     }
   }
 })
+client.on("messageCreate", async (message) => {
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+  const command = args.shift().toLowerCase();
+  if (command == "ping") {
+    const ping = message.createdTimestamp = message.createdTimestamp
+    message.channel.send({
+      content: `Api Latency: ${client.ws.ping}ms`
+    })
+    message.channel.send({
+      content: `Bot Latency: ${ping}ms`
+    })
+  }
+  if (command=="uptime") {
+    let days = Math.floor(client.uptime / 86400000)
+    let hours = Math.floor(client.uptime / 3600000) % 24
+    let minutes = Math.floor(client.uptime / 600000) % 60
+    let seconds = Math.floor(client.uptime / 1000) % 60
+
+    let upEmbed = new MessageEmbed()
+    .setColor("RANDOM")
+    .setDescription(`📈 - My Uptime is \`${days}\` days,\`${hours}\` hours,\`${minutes}\` minutes,\`${seconds}\` seconds`)
+
+    message.channel.send({
+      embeds:[upEmbed]
+    })
+
+  }
+})
 client.login(token);
