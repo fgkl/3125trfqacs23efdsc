@@ -94,14 +94,11 @@ client.on("messageCreate", async (message) => {
     
   }
   if (command=="uptime") {
-    let days = Math.floor(client.uptime / 86400000)
-    let hours = Math.floor(client.uptime / 3600000) % 24
-    let minutes = Math.floor(client.uptime / 600000) % 60
-    let seconds = Math.floor(client.uptime / 1000) % 60
-
+    var uptime = new Date(message.client.uptime);
+    const days = Math.floor(message.client.uptime / (60 * 1000 * 60 * 24));
     let upEmbed = new MessageEmbed()
     .setColor("RANDOM")
-    .setDescription(`📈 - My Uptime is \`${days}\` days,\`${hours}\` hours,\`${minutes}\` minutes,\`${seconds}\` seconds`)
+    .setDescription(`📈 - My Uptime is \`${days}\` days,\`${uptime.getHours()}\` hours,\`${uptime.getMinutes()}\` minutes,\`${uptime.getSeconds()}\` seconds`)
 
     message.channel.send({
       embeds:[upEmbed]
