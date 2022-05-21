@@ -4,7 +4,7 @@
 
 
 local WATERMARK, CONST_TABLE, gfenv = nil, nil, nil;
-([[herrtts obf]]):gsub('(.*)', function(w)
+([[Soloware]]):gsub('(.*)', function(w)
 
             local watermark = "dG9iybbhx";
 local Shit = "WrqUWj";
