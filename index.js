@@ -85,12 +85,13 @@ client.on("messageCreate", async (message) => {
   const command = args.shift().toLowerCase();
   if (command == "ping") {
     const ping = message.createdTimestamp = message.createdTimestamp
+    let up = new MessageEmbed()
+    .setColor("DARK_GOLD")
+    .setDescription(`🤖 \n **\`${ping}\`ms** bot latency,\n **\`${client.ws.ping}\`ms** api latency `)
     message.channel.send({
-      content: `Api Latency: ${client.ws.ping}ms`
+      embeds:[up]
     })
-    message.channel.send({
-      content: `Bot Latency: ${ping}ms`
-    })
+    
   }
   if (command=="uptime") {
     let days = Math.floor(client.uptime / 86400000)
