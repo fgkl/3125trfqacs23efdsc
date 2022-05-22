@@ -7,7 +7,7 @@ const prefix = "!"
 const request = require('request');
 const path = require('path');
 const fetch = require('node-fetch');
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed,MessageActionRow,MessageButton, MessageSelectMenu} = require('discord.js');
 const { Server } = require('http')
 
 
@@ -62,13 +62,51 @@ client.on('messageCreate', async (message) => {
           message.reply({
             embeds: [exampleEmbed],
           })
-          message.channel.send({
+          const r = new MessageActionRow()
+          .addComponents(
+            new MessageSelectMenu()
+            .setCustomId("idk")
+            .setPlaceholder("Send option")
+            .addOptions([
+              {
+                label: "Dm",
+                emoji: "📁",
+                description : "Sends you the obfuscated script in dms",
+                value: "dm"
+              },
+              {
+                label: "Channel",
+                emoji: "📂",
+                description : "Sends you the obfuscated script in the channel",
+                value: "channel1"
+              },
+            ])
+          )
+          let sendmsg = message.channel.send({content: "\n", components: [r]})
+          const coolector = message.channel.createMessageComponentCollector({
+            componentType: "SELECT_MENU"
+          })
+          coolector.on("collect", async collected => {
+             const value = collected.values[0]
 
-            files: [
-              "./temp/output-1.lua"
-
-            ],
-          });
+             if (value === "dm") {
+               message.author.send({
+                 files: [
+                  "./temp/output-1.lua"
+                ],
+               })
+              }
+            if (value === "channel1") {
+              message.channel.send({
+                files: [
+                 "./temp/output-1.lua"
+               ],
+              })
+            }
+        
+            
+             
+          })
           //
         }).catch((err) => {
           console.log("FAIOIIL", err)
