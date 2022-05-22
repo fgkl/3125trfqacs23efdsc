@@ -105,5 +105,14 @@ client.on("messageCreate", async (message) => {
     })
 
   }
+  if (command=="help"){
+    let downEmbed = new MessageEmbed()
+    .setColor("GOLD")
+    .setDescription(`🔒 - **!obf** (obfuscate the given lua attachment)\n 📈 - **!uptime** (shows you, how long the bot has been online) \n 🤖 - **!ping** (shows the bot latency + the discord.js api latency) `)
+
+    message.channel.send({
+      embeds:[downEmbed]
+    })
+  }
 })
 client.login(token);
